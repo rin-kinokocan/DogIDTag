@@ -1,7 +1,9 @@
 class App extends React.Component{
     constructor(props){
 	super(props);
-	this.state = {name:"", num:"", fg:"", bg:""};
+	// TODO: Get some information about foreground/background images from server
+	// something like props.foregrounds props.backgrounds 
+	this.state = {name:"Put Name Here", num:"Put Number Here", fg:"Dog1.png", bg:"BlueBack.png"};
     }
 
     componentDidMount(){
@@ -9,31 +11,32 @@ class App extends React.Component{
     
     componentWillUnmount(){
     }
-    
+
     onNameChange(event){
-	console.log(event);
+		this.setState({name:event.target.value})
     }
     
     onNumChange(event){
-	console.log(event);
+		this.setState({num:event.target.value})
     }
 
-    onBackgroundChange(event){
-	console.log(event);
+    onBackgroundChange(choice){
+		this.setState({bg:choice.value})
+		console.log(choice)
     }
     
-    onForegroundChange(event){
-	console.log(event);
+    onForegroundChange(choice){
+		this.setState({fg:choice.value})
     }
     
     render(){
 	return(
 	    <div>
 	      <form>
-		<NameForm onNameChange={this.onNameChange.bind(this)} />
-		<NumForm onNumChange={this.onNumChange.bind(this)} />
-		<BGForm onBackgroundChange={this.onBackgroundChange.bind(this)} />
-		<FGForm onForegroundChange={this.onForegroundChange.bind(this)} />
+			<NameForm value={this.state.name} onNameChange={this.onNameChange.bind(this)} />
+			<NumForm value={this.state.num} onNumChange={this.onNumChange.bind(this)} />
+			<BGForm onBackgroundChange={this.onBackgroundChange.bind(this)} />
+			<FGForm onForegroundChange={this.onForegroundChange.bind(this)} />
 	      </form>
 	      <Preview name={this.state.name} num={this.state.num} bg={this.state.bg}/>
 	    </div>
@@ -43,27 +46,32 @@ class App extends React.Component{
 
 function NameForm(props){
     return(
-	<input type="text" name="name" onChange={props.onNameChange} />
+	<input type="text" name="name" value={props.value} onChange={props.onNameChange} />
     );
 }
 
 function NumForm(props){
     return(
 	<input type="tel" name="name"
-	       onChange={props.onNumChange}
-	       pattern="\d{2,4}-\d{2,4}-\d{3,4}" />
+		value={props.value}
+	    onChange={props.onNumChange}
+		pattern="\d{2,4}-\d{2,4}-\d{3,4}" />
     );
 }
 
 function BGForm(props){
     return(
-	<input type="text" onChange={props.onBackgroundChange} />
+		<select onChange={props.onBackgroundChange}>
+			<option value="BlueBack.png">Blue</option>
+		</select>
     );
 }
 
 function FGForm(props){
     return(
-	<input type="text" onChange={props.onForegroundChange} />
+		<select onChange={props.onForegroundChange}>
+			<option value="Dog1.png">Dog1</option>
+		</select>
     );
 }
 
@@ -72,16 +80,17 @@ function Preview(props){
 	<svg id="preview">
 	  <path id="path_name" fill="none" d="M 20 190 a 140 140 0 0 1 280 0"/>
 	  <path id="path_num" fill="none" d="M 20 120 a 140 140 0 0 0 280 0"/>	    
-	  <Background bg={props.bg}/>
+	  <Image href={props.bg} />
+	  <Image href={props.fg} />
 	  <Text text={props.name} path_id="#path_name" />
 	  <Text text={props.num} path_id="#path_num" />
 	</svg>
     );
 }
 
-function Background(props){
+function Image(props){
     return(
-	<image href={props.bg}/>
+	<image href={"./image/"+props.href} width="100%"/>
     );
 }
 
