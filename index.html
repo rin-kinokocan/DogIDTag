@@ -1,0 +1,37 @@
+<html>
+    <head>
+	<!-- <link rel="stylesheet" href="styles.css"> -->
+    </head>
+    <body>
+	<div id="testReact">
+	    
+	</div>
+	<form>
+	    <input type="tel" pattern="\d{2,4}-\d{2,4}-\d{3,4}">
+	</form>
+	<svg width="300px" height="300px">
+	    <image href="./image/BlueBack.png" width="300px" height="300px"/>
+	    <image href="./image/Dog1.png" width="300px" height="300px"/>
+	    <path id="curve" fill="none" d="M 20 190 a 140 140 0 0 1 280 0"/>
+	    <path id="num" fill="none" d="M 20 120 a 140 140 0 0 0 280 0"/>	    
+	    <text font-size="27pt">
+		<textPath text-anchor="middle" startOffset="50%" xlink:href="#curve">
+		    Put Name Here
+		</textPath>
+	    </text>
+	    <text font-size="27pt">
+		<textPath text-anchor="middle" startOffset="50%" xlink:href="#num">
+		    000-0000-0000
+		</textPath>
+	    </text>	    
+	</svg>
+	<footer>
+	</footer>
+
+	<!-- React Components! -->
+	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	<script src="Preview.jsx" type="text/babel"></script>	
+    </body>
+</html>
