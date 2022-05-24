@@ -38,7 +38,7 @@ class App extends React.Component{
 			<BGForm onBackgroundChange={this.onBackgroundChange.bind(this)} />
 			<FGForm onForegroundChange={this.onForegroundChange.bind(this)} />
 	      </form>
-	      <Preview name={this.state.name} num={this.state.num} bg={this.state.bg}/>
+	      <Preview name={this.state.name} num={this.state.num} bg={this.state.bg} fg={this.state.fg}/>
 	    </div>
 	);
     }
